@@ -1,4 +1,4 @@
-# finalProject
+# Final Project
 
 # 1. Neovim (nvim):
 #Linux (Ubuntu/Debian):
