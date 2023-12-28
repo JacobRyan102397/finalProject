@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Party</title>
+  </head>
+  <body>
+    <h1>Edit Party</h1>
+    <form method="post" action="/edit/{{ party.idparty }}">
+      <label for="new_client_name">Party Type:</label>
+      <input
+        type="text"
+        id="newPartyType"
+        name="newPartyType"
+        value="{{ newPartyType }}"
+      /><br /><br />
+
+      <input type="submit" value="Save Changes" />
+    </form>
+  </body>
+</html>
