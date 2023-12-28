@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Party Data</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Party Data</h2>
+
+    <table id="partyTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Party Type</th>
+          <th>Role Detail</th>
+          <th>Staff Details</th>
+          <!-- Add more columns as needed -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for party in party %}
+        <tr>
+          <td>{{party.idparty}}</td>
+          <td>{{party.party_type}}</td>
+          <td>{{roles.role_detail}}</td>
+          <td>{{staff.staff_details}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Fetch data from the Flask API endpoint
+        fetch("/party")
+          .then((response) => response.json())
+          .then((data) => {
+            // Populate the table with data
+            const tableBody = document
+              .getElementById("partyTable")
+              .getElementsByTagName("tbody")[0];
+            data.party_data.forEach((item) => {
+              const row = tableBody.insertRow();
+              const cell1 = row.insertCell(0);
+              const cell2 = row.insertCell(1);
+              const cell3 = row.insertCell(2);
+              const cell4 = row.insertCell(3);
+              // Add more cells as needed
+
+              cell1.textContent = item.idparty;
+              cell2.textContent = item.party_type;
+              cell3.textContent = item.role_detail;
+              cell4.textContent = item.staff_details;
+              // Add more cell assignments as needed
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      });
+    </script>
+  </body>
+</html>
